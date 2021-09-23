@@ -1,0 +1,23 @@
+{
+  "name": "escrow",
+  "version": "1.0.0",
+  "description": "An escrow contract with a react frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matt-user/Escrow.git"
+  },
+  "author": "mattauer@umich.edu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matt-user/Escrow/issues"
+  },
+  "homepage": "https://github.com/matt-user/Escrow#readme",
+  "dependencies": {
+    "truffle": "^5.4.11",
+    "truffle-hdwallet-provider": "^1.0.17"
+  }
+}
