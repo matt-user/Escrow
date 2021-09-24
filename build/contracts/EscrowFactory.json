@@ -30,7 +30,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -49,7 +50,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"_escrowAccount\",\"type\":\"address\"},{\"internalType\":\"address payable\",\"name\":\"_seller\",\"type\":\"address\"}],\"name\":\"createEscrow\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getDeployedEscrowContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getDeployedEscrowContracts\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"mattauer@umich.edu\",\"kind\":\"dev\",\"methods\":{\"createEscrow(address,address)\":{\"params\":{\"_escrowAccount\":\"the escrow account to manage the funds\",\"_seller\":\"the account which receives the funds\"}},\"getDeployedEscrowContract(uint256)\":{\"params\":{\"index\":\"index of contract to return\"},\"returns\":{\"_0\":\"returns address of contract given\"}},\"getDeployedEscrowContracts()\":{\"returns\":{\"_0\":\"a list of deployed escrow contracts\"}}},\"title\":\"creates new escrow contracts\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"createEscrow(address,address)\":{\"notice\":\"creates a new escrow contract and adds it to a list\"},\"getDeployedEscrowContract(uint256)\":{\"notice\":\"return the escrow contract at the given index\"},\"getDeployedEscrowContracts()\":{\"notice\":\"returns all of the deployed escrow contracts\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/EscrowFactory.sol\":\"EscrowFactory\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Escrow.sol\":{\"keccak256\":\"0x9222935f898bea30d82385643d68a44eaf844c6cee2a2214ba59c3a944ce2af1\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://167a98619c444063d46e8ef0c331f8c1eb6687e97d4af007a27bb882f309762a\",\"dweb:/ipfs/QmTf5Eq1C2qnZ5ZvrPAAcxH941vX4dtEdtvSem7QWvKhE7\"]},\"project:/contracts/EscrowFactory.sol\":{\"keccak256\":\"0x52a9b0c1b6fb186eca7fa45ad3d2d8e24bd0306a501b7018ba91b4b72495fc7e\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://1bbac16e40b5d772d828b6d17c8e312d88d260cfa462c22ec7cae6d0bdc59036\",\"dweb:/ipfs/QmbsKTjd2Cyv5DwiQVrzycq2u8NEr1CYs5McFykxoLCcH4\"]}},\"version\":1}",
@@ -4985,9 +4987,17 @@
     "name": "solc",
     "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x386563BE6cb249C9011849b8a990Ca45c41572ad",
+      "transactionHash": "0x5cfcb91baee4b1e51e8ae75fb2d2e6c1532ab5de8b776e8ba24184fddc1dde0d"
+    }
+  },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-24T16:55:33.687Z",
+  "updatedAt": "2021-09-24T17:04:33.054Z",
+  "networkType": "ethereum",
   "devdoc": {
     "author": "mattauer@umich.edu",
     "kind": "dev",
