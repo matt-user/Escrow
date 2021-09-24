@@ -7,16 +7,17 @@ pragma solidity >=0.7.0 <0.9.0;
 contract Escrow {
 
     address payable private buyer;
-    address private escrowAccount;
+    address payable private escrowAccount;
     address payable private seller;
 
     /**
     * @notice constructs and escrow contract
+    * @param _buyer the account which releases the funds
     * @param _escrowAccount the escrow account to manage the funds
     * @param _seller the account which receives the funds
     */
-    constructor(address _escrowAccount, address payable _seller) payable {
-        buyer = payable(msg.sender);
+    constructor(address payable _buyer, address payable _escrowAccount, address payable _seller) payable {
+        buyer = _buyer;
         escrowAccount = _escrowAccount;
         seller = _seller;
     }
