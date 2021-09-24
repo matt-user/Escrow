@@ -19,4 +19,21 @@ contract EscrowFactory {
         address newEscrow = address(new Escrow(payable(msg.sender), _escrowAccount, _seller));
         deployedEscrowContracts.push(newEscrow);
     }
+
+    /**
+    * @notice returns all of the deployed escrow contracts
+    * @return a list of deployed escrow contracts
+    */
+    function getDeployedEscrowContracts() external view returns (address[] memory) {
+        return deployedEscrowContracts;
+    }
+
+    /**
+    * @notice return the escrow contract at the given index
+    * @param index index of contract to return
+    * @return returns address of contract given
+    */
+    function getDeployedEscrowContract(uint index) external view returns (address) {
+        return deployedEscrowContracts[index];
+    }
 }
