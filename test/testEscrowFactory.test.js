@@ -12,6 +12,12 @@ contract("EscrowFactory", async (accounts) => {
     });
 
     it("Can create and Get Escrow Contracts", async () => {
-        await escrowFactory.createEscrow()
+        // buyer: accounts[0] (default account/msg sender) escrowAccount: accounts[1], seller: accounts[2]
+        await escrowFactory.createEscrow(accounts[1], accounts[2], { from: accounts[0] });
+        const deployedEscrowContract = await escrowFactory.getDeployedEscrowContract(0);
+        assert.ok(deployedEscrowContract);
+        await escrowFactory.createEscrow(accounts[1], accounts[2], { from: accounts[0] });
+        const deployedEscrowContracts = await escrowFactory.getDeployedEscrowContracts();
+        assert.lengthOf(deployedEscrowContracts, 2);
     });
 });
