@@ -4,7 +4,8 @@
   "description": "An escrow contract with a react frontend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "truffle test",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
