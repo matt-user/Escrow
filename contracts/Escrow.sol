@@ -26,7 +26,7 @@ contract Escrow {
     * @notice releases the funds to the seller
     */
     function releaseFunds() external {
-        require(msg.sender == buyer || msg.sender == escrowAccount, "Only the buyer or escrow account can release funds.");
+        require(msg.sender == buyer || msg.sender == escrowAccount, "Only buyer or escrow account can release funds.");
         seller.transfer(address(this).balance);
     }
 
@@ -34,7 +34,7 @@ contract Escrow {
     * @notice refunds the funds to the seller
     */
     function refundFunds() external {
-        require(msg.sender == seller || msg.sender == escrowAccount, "Only the seller or escrow account can refund funds");
+        require(msg.sender == seller || msg.sender == escrowAccount, "Only seller or escrow account can refund funds");
         buyer.transfer(address(this).balance);
     }
 

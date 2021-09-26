@@ -16,7 +16,10 @@ contract EscrowFactory {
     * @param _seller the account which receives the funds
     */
     function createEscrow(address payable _escrowAccount, address payable _seller) external {
-        require(msg.sender != _escrowAccount && _escrowAccount != _seller, "Neither the buyer nor seller can manage the escrow account.");
+        require(
+            msg.sender != _escrowAccount && _escrowAccount != _seller,
+            "Neither the buyer nor seller can manage the escrow account."
+        );
         address newEscrow = address(new Escrow(payable(msg.sender), _escrowAccount, _seller));
         deployedEscrowContracts.push(newEscrow);
     }
