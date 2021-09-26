@@ -19,5 +19,8 @@
   "dependencies": {
     "truffle": "^5.4.11",
     "truffle-hdwallet-provider": "^1.0.17"
+  },
+  "devDependencies": {
+    "husky": "^7.0.2"
   }
 }
