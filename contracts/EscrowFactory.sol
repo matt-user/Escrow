@@ -15,7 +15,7 @@ contract EscrowFactory {
     * @param _escrowAccount the escrow account to manage the funds
     * @param _seller the account which receives the funds
     */
-    function createEscrow(address payable _escrowAccount, address payable _seller) external {
+    function createEscrow(address payable _escrowAccount, address payable _seller) external payable {
         require(
             msg.sender != _escrowAccount && _escrowAccount != _seller,
             "Neither the buyer nor seller can manage the escrow account."
