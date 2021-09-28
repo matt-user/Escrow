@@ -21,15 +21,11 @@ contract('Escrow', async (accounts) => {
   })
 
   it('Buyer can release funds', async () => {
-    await escrow.releaseFunds({ from: accounts[0] });
-    const etherBalance = web3.utils.fromWei(await web3.eth.getBalance(accounts[2]), 'ether');
-    assert.strictEqual(etherBalance, "102", "Seller account did not receive ether");
+    releaseFundsHelper(escrow, accounts[0], accounts[2])
   });
 
   it('Escrow contract can release funds', async () => {
-    await escrow.releaseFunds({ from: accounts[1] });
-    const etherBalance = web3.utils.fromWei(await web3.eth.getBalance(accounts[2]), 'ether');
-    assert.strictEqual(etherBalance, "102", "Seller account did not receive ether");
+    releaseFundsHelper(escrow, accounts[1], accounts[2]);
   });
 
   it('Seller can not release funds', async () => {
@@ -40,4 +36,10 @@ contract('Escrow', async (accounts) => {
       assert(err);
     }
   });
-})
+});
+
+async function releaseFundsHelper(escrow, account, sellerAccount) {
+  await escrow.releaseFunds({ from: account });
+  const etherBalance = web3.utils.fromWei(await web3.eth.getBalance(sellerAccount), 'ether');
+  assert.strictEqual(etherBalance, "102", "Seller account did not receive ether");
+}
