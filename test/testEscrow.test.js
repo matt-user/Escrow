@@ -38,6 +38,15 @@ contract('Escrow', async (accounts) => {
   });
 });
 
+
+/**
+ * Summary.
+ * account releases funds from the escrow account to the seller account
+ * Requires account to be either the buyer or escrowAccount
+ * @param {Object} escrow escrow contract 
+ * @param {address} account address that releases the funds in the escrow account 
+ * @param {address} sellerAccount address that receives the funds in the escrow account 
+ */
 async function releaseFundsHelper(escrow, account, sellerAccount) {
   await escrow.releaseFunds({ from: account });
   const etherBalance = web3.utils.fromWei(await web3.eth.getBalance(sellerAccount), 'ether');
