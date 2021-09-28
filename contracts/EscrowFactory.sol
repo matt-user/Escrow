@@ -20,7 +20,8 @@ contract EscrowFactory {
             msg.sender != _escrowAccount && _escrowAccount != _seller,
             "Neither the buyer nor seller can manage the escrow account."
         );
-        address newEscrow = address(new Escrow(payable(msg.sender), _escrowAccount, _seller));
+        // Forward the sent Ether to the Escrow contract
+        address newEscrow = address((new Escrow){value: msg.value}(payable(msg.sender), _escrowAccount, _seller));
         deployedEscrowContracts.push(newEscrow);
     }
 
