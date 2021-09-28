@@ -6,7 +6,10 @@
   "scripts": {
     "test": "truffle test",
     "prepare": "husky install",
-    "lint": "solhint contracts/**/*.sol"
+    "lint": "solhint contracts/**/*.sol next lint",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "repository": {
     "type": "git",
