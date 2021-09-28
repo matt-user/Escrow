@@ -10,7 +10,9 @@ const Header = () => {
             </Link>
 
             <Menu.Menu position="right">
-                <Link href="/escrowAccounts/new">+</Link>
+                <Link href="/escrowAccounts/new">
+                    <a className="item">+</a>
+                </Link>
             </Menu.Menu>
         </Menu>
     );
