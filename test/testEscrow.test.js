@@ -44,6 +44,15 @@ contract('Escrow', async (accounts) => {
   it('Escrow contract can refund funds', async () => {
     refundFundshelper(escrow, accounts[1], accounts[0]);
   });
+
+  it('Buyer can not refund funds', async () => {
+    try {
+      await escrow.refundFunds({ from: accounts[0] });
+      assert(false, "Buyer should not be able to release funds");
+    } catch (err) {
+      assert(err);
+    }
+  });
 });
 
 
