@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 
 // import drizzle functions and contract artifact
@@ -10,7 +9,7 @@ import Escrow from "./contracts/Escrow.json";
 
 // let drizzle know what contracts we want and how to access our test blockchain
 const options = {
-  contract: [EscrowFactory, Escrow],
+  contracts: [EscrowFactory, Escrow],
   web3: {
     fallback: {
       type: "ws",

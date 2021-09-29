@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import ShowEscrowAccounts from './ShowEscrowAccounts';
+
 class App extends Component {
   state = { loading: true, drizzleState: null };
 
@@ -12,7 +14,7 @@ class App extends Component {
       const drizzleState = drizzle.store.getState();
 
       // check to see if it's ready, if so, update local component state
-      if (drizzleState.drizzleStatus.inialized) {
+      if (drizzleState.drizzleStatus.initialized) {
         this.setState({ loading: false, drizzleState });
       }
     });
@@ -24,7 +26,14 @@ class App extends Component {
 
   render() {
     if (this.state.loading) return "Loading Drizzle...";
-    return <div className="App">Drizzle is ready</div>;
+    return (
+      <div className="App">
+        <ShowEscrowAccounts
+          drizzle={this.props.drizzle}
+          drizzleState={this.state.drizzleState}
+        />
+      </div>
+    );
   }
 }
 
