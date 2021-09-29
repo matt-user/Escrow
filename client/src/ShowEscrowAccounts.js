@@ -6,27 +6,27 @@ class ShowEscrowAccounts extends Component {
     componentDidMount() {
         const { drizzle } = this.props;
         const contract = drizzle.contracts.EscrowFactory;
-
         // let drizzle know we want to watch the 'deployedEscrowContracts' method
-        const dataKey = contract.methods["deployedEscrowContracts"].cacheCall();
+        const dataKey = contract.methods["getDeployedEscrowContracts"].cacheCall();
         // save the 'dataKey' to local component state for later reference
         this.setState({ dataKey });
     }
 
     renderEscrowContracts(escrowContracts) {
-        return escrowContracts.map(() => {
-            return (
-                <tr>
-                    <td>address</td>
-                    <td>View Contract</td>
-                </tr>
-            );
-        });
+        if (!!escrowContracts) {
+            // return escrowContracts.map(() => {
+            //     return (
+            //         <tr>
+            //             <td>address</td>
+            //             <td>View Contract</td>
+            //         </tr>
+            //     );
+            // });
+        }
     }
 
     render() {
         // get the contract state from the drizzleState
-        console.log(this.props.drizzleState)
         const { EscrowFactory } = this.props.drizzleState.contracts;
         // using the save 'dataKey', get the variable we're interested in
         const escrowContracts = EscrowFactory.getDeployedEscrowContracts[this.state.dataKey];
@@ -39,6 +39,7 @@ class ShowEscrowAccounts extends Component {
                         {this.renderEscrowContracts(escrowContracts)}
                     </tbody>
                 </table>
+                <a></a>
             </div>
         );
     }

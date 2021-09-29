@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
+import Layout from './Layout';
 import ShowEscrowAccounts from './ShowEscrowAccounts';
 
 class App extends Component {
@@ -27,12 +29,14 @@ class App extends Component {
   render() {
     if (this.state.loading) return "Loading Drizzle...";
     return (
-      <div className="App">
-        <ShowEscrowAccounts
-          drizzle={this.props.drizzle}
-          drizzleState={this.state.drizzleState}
-        />
-      </div>
+      <Layout>
+        <div className="App">
+          <ShowEscrowAccounts
+            drizzle={this.props.drizzle}
+            drizzleState={this.state.drizzleState}
+          />
+        </div>
+      </Layout>
     );
   }
 }

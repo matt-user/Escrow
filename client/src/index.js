@@ -9,7 +9,7 @@ import Escrow from "./contracts/Escrow.json";
 
 // let drizzle know what contracts we want and how to access our test blockchain
 const options = {
-  contracts: [EscrowFactory, Escrow],
+  contracts: [EscrowFactory],
   web3: {
     fallback: {
       type: "ws",
