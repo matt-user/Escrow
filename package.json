@@ -6,10 +6,7 @@
   "scripts": {
     "test": "truffle test",
     "prepare": "husky install",
-    "lint": "solhint contracts/**/*.sol next lint",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "lint": "solhint contracts/**/*.sol"
   },
   "repository": {
     "type": "git",
@@ -23,11 +20,8 @@
   "homepage": "https://github.com/matt-user/Escrow#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.4",
     "truffle": "^5.4.11",
     "truffle-hdwallet-provider": "^1.0.17"
   },
