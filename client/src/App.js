@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Layout from './Layout';
 import ShowEscrowAccounts from './ShowEscrowAccounts';
+import NewEscrowAccount from './NewEscrowAccount';
 
 class App extends Component {
   state = { loading: true, drizzleState: null };
@@ -31,10 +32,21 @@ class App extends Component {
     return (
       <Layout>
         <div className="App">
-          <ShowEscrowAccounts
-            drizzle={this.props.drizzle}
-            drizzleState={this.state.drizzleState}
-          />
+          <Switch>
+            <Route path="/">
+              <ShowEscrowAccounts
+                drizzle={this.props.drizzle}
+                drizzleState={this.state.drizzleState}
+              />
+            </Route>
+
+            <Route path="/escrowAccounts/new">
+              <NewEscrowAccount
+                drizzle={this.props.drizzle}
+                drizzleState={this.props.drizzleState}
+              />
+            </Route>
+          </Switch>
         </div>
       </Layout>
     );

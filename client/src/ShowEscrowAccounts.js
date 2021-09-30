@@ -33,7 +33,7 @@ class ShowEscrowAccounts extends Component {
         // if it exists, then we display its value
         return (
             <div>
-                <h1 id='title'>Escrow Contracts</h1>
+                <h2 id='title'>Escrow Contracts</h2>
                 <table id='escrowContracts'>
                     <tbody>
                         {this.renderEscrowContracts(escrowContracts)}
