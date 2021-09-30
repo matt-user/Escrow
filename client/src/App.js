@@ -33,7 +33,7 @@ class App extends Component {
       <Layout>
         <div className="App">
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <ShowEscrowAccounts
                 drizzle={this.props.drizzle}
                 drizzleState={this.state.drizzleState}
