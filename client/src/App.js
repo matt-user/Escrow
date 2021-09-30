@@ -43,7 +43,7 @@ class App extends Component {
             <Route path="/escrowAccounts/new">
               <NewEscrowAccount
                 drizzle={this.props.drizzle}
-                drizzleState={this.props.drizzleState}
+                drizzleState={this.state.drizzleState}
               />
             </Route>
           </Switch>
