@@ -14,6 +14,7 @@ class ShowEscrowAccounts extends Component {
 
     renderEscrowContracts(escrowContracts) {
         if (!!escrowContracts) {
+            console.log(escrowContracts.value);
             // return escrowContracts.map(() => {
             //     return (
             //         <tr>
