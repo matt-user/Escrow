@@ -18,14 +18,17 @@ class NewEscrowAccount extends Component {
         const escrowFactory = drizzle.contracts.EscrowFactory;
 
         this.setState({ loading: true, errorMessage: '' });
-        let stackId
+        let stackId;
         try {
             // let drizzle know we want to call the createEscrow method with 'value'
-            stackId = escrowFactory.methods["createEscrow"].cacheSend(
+            console.log(drizzleState.accounts[0]);
+            stackId = escrowFactory.methods.createEscrow.cacheSend(
                 this.state.escrowAccountAddress,
                 this.state.sellerAddress,
                 {
                     from: drizzleState.accounts[0],
+                    gas: '3000000',
+                    gasPrice: '5000000000',
                     value: web3.utils.toWei(this.state.fundAmount, 'ether')
                 }
             );
