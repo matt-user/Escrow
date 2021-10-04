@@ -4,7 +4,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 
 // import drizzle functions and contract artifact
-import { Drizzle, generateStore } from "@drizzle/store";
+import { Drizzle } from "@drizzle/store";
 import EscrowFactory from "./contracts/EscrowFactory.json";
 
 // let drizzle know what contracts we want and how to access our test blockchain
