@@ -9,6 +9,7 @@ import "./Escrow.sol";
 contract EscrowFactory {
 
     address[] private deployedEscrowContracts;
+    event NewEscrow(address buyer, address escrowAccount, address seller);
 
     /**
     * @notice creates a new escrow contract and adds it to a list
@@ -23,6 +24,7 @@ contract EscrowFactory {
         // Forward the sent Ether to the Escrow contract
         address newEscrow = address((new Escrow){value: msg.value}(payable(msg.sender), _escrowAccount, _seller));
         deployedEscrowContracts.push(newEscrow);
+        emit NewEscrow(msg.sender, _escrowAccount, _seller);
     }
 
     /**
