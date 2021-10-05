@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import { Form, Button, Input, Message } from 'semantic-ui-react';
 import Web3 from 'web3';
 const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
@@ -9,7 +10,7 @@ class NewEscrowAccount extends Component {
         escrowAccountAddress: '',
         sellerAddress: '',
         fundAmount: '',
-        errorMessage: '',
+        transactionStatus: '',
         loading: false
     };
 
@@ -17,24 +18,18 @@ class NewEscrowAccount extends Component {
         const { drizzle, drizzleState } = this.props;
         const escrowFactory = drizzle.contracts.EscrowFactory;
 
-        this.setState({ loading: true, errorMessage: '' });
-        let stackId;
-        try {
-            // let drizzle know we want to call the createEscrow method with 'value'
-            console.log(drizzleState.accounts[0]);
-            stackId = escrowFactory.methods.createEscrow.cacheSend(
-                this.state.escrowAccountAddress,
-                this.state.sellerAddress,
-                {
-                    from: drizzleState.accounts[0],
-                    gas: '3000000',
-                    gasPrice: '5000000000',
-                    value: web3.utils.toWei(this.state.fundAmount, 'ether')
-                }
-            );
-        } catch (err) {
-            this.setState({ errorMessage: err.message });
-        }
+        this.setState({ loading: true, transactionStatus: '' });
+        // let drizzle know we want to call the createEscrow method with 'value'\
+        const stackId = escrowFactory.methods.createEscrow.cacheSend(
+            this.state.escrowAccountAddress,
+            this.state.sellerAddress,
+            {
+                from: drizzleState.accounts[0],
+                gas: '3000000',
+                gasPrice: '5000000000',
+                value: web3.utils.toWei(this.state.fundAmount, 'ether')
+            }
+        );
         this.setState({ stackId, loading: false });
     }
 
@@ -45,15 +40,27 @@ class NewEscrowAccount extends Component {
         const txHash = transactionStack[this.state.stackId];
         // if transaction hash does not exist, don't display anything
         if (!txHash) return null;
+        return transactions[txHash];
         // otherwise return the transaction status
-        return `Transaction Status: ${transactions[txHash] && transactions[txHash].status}`;
+        //return `Transaction Status: ${transactions[txHash] && transactions[txHash].status}`;
     };
+
+    handleTxStatus = (tx) => {
+        if (tx) {
+            if (tx.status === 'error') {
+                return <Message error header="Error" content={tx.error.message} />;
+            } else if (tx.status === 'success') {
+                return <Redirect to="/" />;
+            }
+        }
+        return null;
+    }
 
     render() {
         return (
             <div>
                 <h2>Create an Escrow Contract</h2>
-                <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
+                <Form onSubmit={this.onSubmit} error={!!this.getTxStatus()}>
                     <Form.Field>
                         <label>Escrow Account Address</label>
                         <Input
@@ -78,10 +85,9 @@ class NewEscrowAccount extends Component {
                         />
                     </Form.Field>
 
-                    <Message error header="Error" content={this.state.errorMessage} />
+                    {this.handleTxStatus(this.getTxStatus())}
                     <Button primary>Create!</Button>
                 </Form>
-                <div>{this.getTxStatus()}</div>
             </div>
         );
     }
