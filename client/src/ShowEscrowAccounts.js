@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Card } from 'semantic-ui-react';
 
 class ShowEscrowAccounts extends Component {
     state = { dataKey: null };
 
     componentDidMount() {
         const { drizzle } = this.props;
-        const contract = drizzle.contracts.EscrowFactory;
+        const escrowFactory = drizzle.contracts.EscrowFactory;
         // let drizzle know we want to watch the 'deployedEscrowContracts' method
-        const dataKey = contract.methods["getDeployedEscrowContracts"].cacheCall();
+        const dataKey = escrowFactory.methods.getDeployedEscrowContracts.cacheCall();
         // save the 'dataKey' to local component state for later reference
         this.setState({ dataKey });
     }
 
     renderEscrowContracts(escrowContracts) {
         if (!!escrowContracts) {
-            console.log(escrowContracts.value);
-            // return escrowContracts.map(() => {
-            //     return (
-            //         <tr>
-            //             <td>address</td>
-            //             <td>View Contract</td>
-            //         </tr>
-            //     );
-            // });
+            const items = escrowContracts.value.map((address) => {
+                return {
+                    header: address,
+                    description: (
+                        <Link to="/">View Escrow Contract</Link>
+                    ),
+                    fluid: true
+                };
+            });
+            return <Card.Group items={items} />
         }
     }
 
