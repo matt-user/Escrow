@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Form, Button, Input, Message } from 'semantic-ui-react';
-import Web3 from 'web3';
-const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+import web3 from './getWeb3';
+
 
 class NewEscrowAccount extends Component {
     state = {
