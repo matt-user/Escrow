@@ -20,7 +20,7 @@ class ShowEscrowAccounts extends Component {
                 return {
                     header: address,
                     description: (
-                        <Link to="/">View Escrow Contract</Link>
+                        <Link to={`/escrowAccounts/${address}`}>View Escrow Contract</Link>
                     ),
                     fluid: true
                 };
