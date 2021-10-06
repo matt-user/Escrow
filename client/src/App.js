@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Layout from './Layout';
 import ShowEscrowAccounts from './ShowEscrowAccounts';
 import NewEscrowAccount from './NewEscrowAccount';
+import EscrowContractIndex from './EscrowContractIndex';
 
 class App extends Component {
   state = { loading: true, drizzleState: null };
@@ -42,6 +43,13 @@ class App extends Component {
 
             <Route path="/escrowAccounts/new">
               <NewEscrowAccount
+                drizzle={this.props.drizzle}
+                drizzleState={this.state.drizzleState}
+              />
+            </Route>
+
+            <Route path="/escrowAccounts/:address">
+              <EscrowContractIndex
                 drizzle={this.props.drizzle}
                 drizzleState={this.state.drizzleState}
               />
