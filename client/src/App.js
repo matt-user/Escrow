@@ -48,12 +48,16 @@ class App extends Component {
               />
             </Route>
 
-            <Route path="/escrowAccounts/:address">
-              <EscrowContractIndex
-                drizzle={this.props.drizzle}
-                drizzleState={this.state.drizzleState}
-              />
-            </Route>
+            <Route
+              path="/escrowAccounts/:address"
+              render={({ match }) =>
+                <EscrowContractIndex
+                  address={match.params.address}
+                  drizzle={this.props.drizzle}
+                  drizzleState={this.state.drizzleState}
+                />
+              }
+            />
           </Switch>
         </div>
       </Layout>
