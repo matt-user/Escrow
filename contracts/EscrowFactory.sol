@@ -9,14 +9,13 @@ import "./Escrow.sol";
 contract EscrowFactory {
 
     address[] private deployedEscrowContracts;
-    event NewEscrow(address buyer, address escrowAccount, address seller);
 
     /**
     * @notice creates a new escrow contract and adds it to a list
     * @param _escrowAccount the escrow account to manage the funds
     * @param _seller the account which receives the funds
     */
-    function createEscrow(address payable _escrowAccount, address payable _seller) external payable {
+    function createEscrow(address payable _escrowAccount, address payable _seller) external payable returns (address) {
         require(
             msg.sender != _escrowAccount && _escrowAccount != _seller,
             "Neither the buyer nor seller can manage the escrow account."
@@ -24,7 +23,7 @@ contract EscrowFactory {
         // Forward the sent Ether to the Escrow contract
         address newEscrow = address((new Escrow){value: msg.value}(payable(msg.sender), _escrowAccount, _seller));
         deployedEscrowContracts.push(newEscrow);
-        emit NewEscrow(msg.sender, _escrowAccount, _seller);
+        return newEscrow;
     }
 
     /**
